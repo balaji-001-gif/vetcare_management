@@ -120,14 +120,14 @@ def create_veterinarians():
                 "doctype": "Veterinarian",
                 "full_name": vet["name"],
                 "specialization": vet["specialization"],
-                "mobile_no": "9876543210"
+                "mobile_no": "+91-9876543210"
             }).insert(ignore_permissions=True)
 
 def create_pet_owners_and_pets():
     print("Creating Pet Owners and Pets...")
     owners = [
-        {"name": "Alice Johnson", "mobile": "555-0101", "email": "alice@example.com"},
-        {"name": "Bob Williams", "mobile": "555-0202", "email": "bob@example.com"}
+        {"name": "Alice Johnson", "mobile": "+1-555-0101000", "email": "alice@example.com"},
+        {"name": "Bob Williams", "mobile": "+1-555-0202000", "email": "bob@example.com"}
     ]
     for o in owners:
         if not frappe.db.exists("Pet Owner", {"full_name": o["name"]}):
