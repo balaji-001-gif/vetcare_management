@@ -171,7 +171,7 @@ def create_appointments_and_consultations():
             apt = frappe.get_doc({
                 "doctype": "Vet Appointment",
                 "patient": pet_max,
-                "owner": max_doc.owner,
+                "owner": frappe.db.get_value("Patient Pet", pet_max, "owner"),
                 "veterinarian": dr_john,
                 "appointment_date": frappe.utils.today(),
                 "appointment_time": "10:00:00",
@@ -185,7 +185,7 @@ def create_appointments_and_consultations():
                 "doctype": "Vet Consultation",
                 "appointment": apt.name,
                 "patient": pet_max,
-                "owner": max_doc.owner,
+                "owner": frappe.db.get_value("Patient Pet", pet_max, "owner"),
                 "veterinarian": dr_john,
                 "consultation_date": frappe.utils.today(),
                 "weight_kg": 25.0,
