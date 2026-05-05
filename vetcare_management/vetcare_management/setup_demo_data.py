@@ -32,7 +32,7 @@ def create_branch_clinic():
             frappe.get_doc({
                 "doctype": "Branch Clinic",
                 "branch_name": branch,
-                "contact_number": "+1234567890",
+                "contact_number": "+1-202-555-0199",
                 "email": "contact@vethospital.com",
                 "address": "123 Vet Street, City"
             }).insert(ignore_permissions=True)
@@ -126,8 +126,8 @@ def create_veterinarians():
 def create_pet_owners_and_pets():
     print("Creating Pet Owners and Pets...")
     owners = [
-        {"name": "Alice Johnson", "mobile": "+1-555-0101000", "email": "alice@example.com"},
-        {"name": "Bob Williams", "mobile": "+1-555-0202000", "email": "bob@example.com"}
+        {"name": "Alice Johnson", "mobile": "+1-202-555-0101", "email": "alice@example.com"},
+        {"name": "Bob Williams", "mobile": "+1-202-555-0102", "email": "bob@example.com"}
     ]
     for o in owners:
         if not frappe.db.exists("Pet Owner", {"full_name": o["name"]}):
