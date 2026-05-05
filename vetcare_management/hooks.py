@@ -12,22 +12,7 @@ required_apps = ["frappe", "erpnext"]
 app_include_css = "/assets/vetcare_management/css/vetcare.css"
 app_include_js = "/assets/vetcare_management/js/vetcare.js"
 
-doc_events = {
-    "Vet Appointment": {
-        "on_submit": "vetcare_management.vetcare_management.doctype.vet_appointment.vet_appointment.on_submit",
-        "on_cancel": "vetcare_management.vetcare_management.doctype.vet_appointment.vet_appointment.on_cancel",
-    },
-    "Lab Test": {
-        "on_submit": "vetcare_management.vetcare_management.doctype.lab_test.lab_test.on_submit",
-    },
-    "Pet Hospitalization": {
-        "on_submit": "vetcare_management.vetcare_management.doctype.pet_hospitalization.pet_hospitalization.on_submit",
-        "on_cancel": "vetcare_management.vetcare_management.doctype.pet_hospitalization.pet_hospitalization.on_cancel",
-    },
-    "Vaccination Record": {
-        "on_submit": "vetcare_management.vetcare_management.doctype.vaccination_record.vaccination_record.on_submit",
-    },
-}
+doc_events = {}
 
 scheduler_events = {
     "daily": [
