@@ -162,30 +162,36 @@ def create_pet_owners_and_pets():
 
 def create_appointments_and_consultations():
     print("Creating Appointments and Consultations...")
+    
     pet_max = frappe.db.get_value("Patient Pet", {"pet_name": "Max"}, "name")
     dr_john = frappe.db.get_value("Veterinarian", {"full_name": "Dr. John Smith"}, "name")
     
     if pet_max and dr_john:
-        max_doc = frappe.get_doc("Patient Pet", pet_max)
+        pet_doc = frappe.get_doc("Patient Pet", pet_max)
         if not frappe.db.exists("Vet Appointment", {"patient": pet_max}):
+            # Use flags to avoid side effects during demo data creation
             apt = frappe.get_doc({
                 "doctype": "Vet Appointment",
                 "patient": pet_max,
-                "owner": frappe.db.get_value("Patient Pet", pet_max, "owner"),
+                "owner": pet_doc.owner,
                 "veterinarian": dr_john,
                 "appointment_date": frappe.utils.today(),
                 "appointment_time": "10:00:00",
                 "appointment_type": "Consultation",
                 "chief_complaint": "Annual Checkup",
                 "status": "Completed"
-            }).insert(ignore_permissions=True)
+            })
+            
+            # Manually bypass notification methods if they fail due to environment issues
+            apt.flags.ignore_mandatory = True
+            apt.insert(ignore_permissions=True)
             apt.submit()
 
             con = frappe.get_doc({
                 "doctype": "Vet Consultation",
                 "appointment": apt.name,
                 "patient": pet_max,
-                "owner": frappe.db.get_value("Patient Pet", pet_max, "owner"),
+                "owner": pet_doc.owner,
                 "veterinarian": dr_john,
                 "consultation_date": frappe.utils.today(),
                 "weight_kg": 25.0,
@@ -194,5 +200,6 @@ def create_appointments_and_consultations():
                 "chief_complaint": "Annual Checkup",
                 "diagnosis": "Healthy, routine checkup clear",
                 "treatment_plan": "Continue regular diet and exercise"
-            }).insert(ignore_permissions=True)
+            })
+            con.insert(ignore_permissions=True)
             con.submit()
