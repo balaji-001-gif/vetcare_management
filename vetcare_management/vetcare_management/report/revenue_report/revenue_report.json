@@ -4,5 +4,9 @@
   "module": "Vetcare Management",
   "report_type": "Script Report",
   "ref_doctype": "Vet Appointment",
-  "is_standard": "Yes"
+  "is_standard": "Yes",
+  "roles": [
+    {"role": "Vet Admin"},
+    {"role": "System Manager"}
+  ]
 }
