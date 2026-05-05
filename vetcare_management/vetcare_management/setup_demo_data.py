@@ -169,7 +169,7 @@ def create_appointments_and_consultations():
     if pet_max and dr_john:
         pet_doc = frappe.get_doc("Patient Pet", pet_max)
         if not frappe.db.exists("Vet Appointment", {"patient": pet_max}):
-            # Use flags to avoid side effects during demo data creation
+            # Use direct db_insert to avoid triggering on_submit notifications
             apt = frappe.get_doc({
                 "doctype": "Vet Appointment",
                 "patient": pet_max,
@@ -179,13 +179,10 @@ def create_appointments_and_consultations():
                 "appointment_time": "10:00:00",
                 "appointment_type": "Consultation",
                 "chief_complaint": "Annual Checkup",
-                "status": "Completed"
+                "status": "Completed",
+                "docstatus": 1 # Submitted status
             })
-            
-            # Manually bypass notification methods if they fail due to environment issues
-            apt.flags.ignore_mandatory = True
-            apt.insert(ignore_permissions=True)
-            apt.submit()
+            apt.db_insert()
 
             con = frappe.get_doc({
                 "doctype": "Vet Consultation",
@@ -199,7 +196,7 @@ def create_appointments_and_consultations():
                 "heart_rate": 80,
                 "chief_complaint": "Annual Checkup",
                 "diagnosis": "Healthy, routine checkup clear",
-                "treatment_plan": "Continue regular diet and exercise"
+                "treatment_plan": "Continue regular diet and exercise",
+                "docstatus": 1 # Submitted status
             })
-            con.insert(ignore_permissions=True)
-            con.submit()
+            con.db_insert()
