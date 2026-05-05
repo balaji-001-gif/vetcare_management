@@ -1,4 +1,5 @@
 {
+  "doctype": "Notification",
   "name": "Hospitalization Discharge Alert",
   "document_type": "Pet Hospitalization",
   "event": "Days Before",

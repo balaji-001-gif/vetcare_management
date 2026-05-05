@@ -1,4 +1,5 @@
 {
+  "doctype": "Notification",
   "name": "Vaccination Due Alert",
   "document_type": "Vaccination Record",
   "event": "Days Before",

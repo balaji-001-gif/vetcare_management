@@ -1,4 +1,5 @@
 {
+  "doctype": "Notification",
   "name": "Appointment Reminder",
   "document_type": "Vet Appointment",
   "event": "Days Before",
