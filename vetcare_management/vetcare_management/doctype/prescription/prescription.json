@@ -20,6 +20,10 @@
     {"fieldname": "dietary_advice", "label": "Dietary Advice", "fieldtype": "Small Text"}
   ],
   "permissions": [
+    {"role": "Vet Admin", "report": 1, "export": 1, "print": 1},
+    {"role": "Veterinarian", "report": 1, "export": 1, "print": 1},
+    {"role": "Vet Receptionist", "report": 1, "export": 1, "print": 1},
+    {"role": "System Manager", "report": 1, "export": 1, "print": 1},
     {"role": "Vet Admin", "read": 1, "write": 1, "create": 1, "delete": 1, "submit": 1, "cancel": 1, "print": 1},
     {"role": "Veterinarian", "read": 1, "write": 1, "create": 1, "submit": 1, "print": 1},
     {"role": "Vet Receptionist", "read": 1, "print": 1}
